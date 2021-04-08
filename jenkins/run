@@ -1,4 +1,10 @@
 
 #docker stop jenkins
 #docker rm jenkins
-docker run -d -p 8888:8080 --name jenkins -v /var/jenkins_home:/var/jenkins_home --env-file env/runtime.env  davismar98/jenkins-challenge:latest
+docker run -d --rm --name jenkins \ 
+  -p 8080:8080 -p 50000:50000 \ 
+  --network jenkins \ 
+  -v jenkins-data:/var/jenkins_home \
+  -v jenkins-docker-certs:/certs/client:ro \ 
+  --env-file env/runtime.env \
+  davismar98/jenkins-challenge:dind
