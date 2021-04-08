@@ -1,0 +1,46 @@
+jenkins:
+  systemMessage: "Jenkins configured automatically by Jenkins Configuration as Code plugin\n\n"
+credentials:
+  system:
+    domainCredentials:
+    - credentials:
+      - usernamePassword:
+          id: "github-cred"
+          username: "${GITHUB_USERNAME}"
+          password: "${GITHUB_TOKEN}"
+          scope: GLOBAL
+tool:
+  git:
+    installations:
+    - home: "git"
+      name: "Default"
+  maven:
+    installations:
+    - name: "maven363"
+      properties:
+      - installSource:
+          installers:
+          - maven:
+              id: "3.6.3"
+  
+jobs:
+  - script: >
+      multibranchPipelineJob('sre-challenge') {
+        branchSources {
+          git {
+            // The id option in the Git and GitHub branch source contexts is now mandatory (JENKINS-43693).
+            id('1234567890')
+            credentialsId('github-cred')
+            includes('dev* master* feature* hotfix* release*')
+            remote('https://github.com/davismar98/apiSampleJava.git')
+          }
+        }
+        orphanedItemStrategy {
+          discardOldItems {
+            numToKeep(1)
+          }
+        }
+        triggers {
+          periodic(5)
+        }
+      }
