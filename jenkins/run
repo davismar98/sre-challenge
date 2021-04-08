@@ -1,3 +1,4 @@
-docker stop jenkins_temp
-docker rm jenkins_temp
-docker run -d -p 8888:8080 --name jenkins_temp -v /var/jenkins_home:/var/jenkins_home --env-file env/runtime.env  davismar98/jenkins-challenge:v0.0.1
+
+#docker stop jenkins
+#docker rm jenkins
+docker run -d -p 8888:8080 --name jenkins -v /var/jenkins_home:/var/jenkins_home --env-file env/runtime.env  davismar98/jenkins-challenge:latest
