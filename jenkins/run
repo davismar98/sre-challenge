@@ -1,10 +1,14 @@
 
-#docker stop jenkins
-#docker rm jenkins
-docker run -d --rm --name jenkins \ 
-  -p 8080:8080 -p 50000:50000 \ 
-  --network jenkins \ 
-  -v jenkins-data:/var/jenkins_home \
-  -v jenkins-docker-certs:/certs/client:ro \ 
-  --env-file env/runtime.env \
-  davismar98/jenkins-challenge:dind
+#Create bridge netword for Jenkins
+docker network create jenkins
+
+#Lauch the Docker In Docker container
+docker run --name jenkins-docker --rm --detach \
+  --privileged --network jenkins --network-alias docker \
+  --env DOCKER_TLS_CERTDIR=/certs \
+  --volume jenkins-docker-certs:/certs/client \
+  --volume jenkins-data:/var/jenkins_home \
+  --publish 2376:2376 docker:dind --storage-driver overlay2
+
+#Launch custom Jenkins
+docker run -d --rm --name jenkins -p 8080:8080 -p 50000:50000 --network jenkins -v jenkins-data:/var/jenkins_home jenkins-docker-certs:/certs/client:ro --env-file env/runtime.env davismar98/jenkins-challenge:dind
