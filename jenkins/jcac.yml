@@ -9,6 +9,11 @@ credentials:
           username: "${GITHUB_USERNAME}"
           password: "${GITHUB_TOKEN}"
           scope: GLOBAL
+      - usernamePassword:
+          id: "dockerhub-cred"
+          username: "${DOCKERHUB_USERNAME}"
+          password: "${DOCKERHUB_TOKEN}"
+          scope: GLOBAL
 tool:
   git:
     installations:
