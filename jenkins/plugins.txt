@@ -11,3 +11,5 @@ git:4.7.1
 kubernetes:1.29.2
 prometheus:2.0.9
 blueocean:1.24.5
+github:1.33.1
+junit-attachments:1.6
