@@ -11,4 +11,4 @@ docker run --name jenkins-docker --rm --detach \
   --publish 2376:2376 docker:dind --storage-driver overlay2
 
 #Launch custom Jenkins
-docker run -d --rm --name jenkins -p 8080:8080 -p 50000:50000 --network jenkins -v jenkins-data:/var/jenkins_home jenkins-docker-certs:/certs/client:ro --env-file env/runtime.env davismar98/jenkins-challenge:dind
+docker run -d --rm --name jenkins -p 8080:8080 -p 50000:50000 --network jenkins -v jenkins-data:/var/jenkins_home -v jenkins-docker-certs:/certs/client:ro --env-file env/runtime.env davismar98/jenkins-challenge:latest

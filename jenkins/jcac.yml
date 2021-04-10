@@ -46,6 +46,6 @@ jobs:
           }
         }
         triggers {
-          periodic(5)
+          periodic(1)
         }
       }

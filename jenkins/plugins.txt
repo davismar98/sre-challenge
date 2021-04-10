@@ -13,3 +13,4 @@ prometheus:2.0.9
 blueocean:1.24.5
 github:1.33.1
 junit-attachments:1.6
+kubernetes-cli:1.10.0
