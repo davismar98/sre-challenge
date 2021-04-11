@@ -19,6 +19,10 @@ credentials:
           id: "aws-cred"
           scope: GLOBAL
           secretKey: "${AWS_SECRET_KEY}"
+      - string:
+          id: "slack-token"
+          scope: GLOBAL
+          secret: "{SLACK_TOKEN}"
 tool:
   git:
     installations:
@@ -32,7 +36,15 @@ tool:
           installers:
           - maven:
               id: "3.6.3"
-  
+
+unclassified:
+  slackNotifier:
+    botUser: false
+    room: "challenge"
+    sendAsText: false
+    teamDomain: "sre-challenge"
+    tokenCredentialId: "slack-token"
+    
 jobs:
   - script: >
       multibranchPipelineJob('sre-challenge') {

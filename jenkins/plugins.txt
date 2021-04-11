@@ -15,3 +15,4 @@ github:1.33.1
 junit-attachments:1.6
 kubernetes-cli:1.10.0
 pipeline-aws:1.43
+slack:2.46
