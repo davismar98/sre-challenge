@@ -9,9 +9,15 @@ terraform {
         source = "hashicorp/kubernetes"
         version = "~> 1.9"
     }
+
+    helm = {
+        source = "hashicorp/helm"
+        version = "~> 2.1.0"
+    }
+    
   }
 
-  backend "s3" {
+    backend "s3" {
     bucket = "sre-challenge-davismar98"
     key    = "terraform"
     region = "us-east-1"
@@ -54,7 +60,7 @@ module "eks-cluster" {
   node_groups = {
     eks_nodes = {
       desired_capacity = var.eks_node_capacity
-      max_capacity     = var.eks_node_capacity
+      max_capacity     = var.eks_node_capacity_max
       min_capaicty     = var.eks_node_capacity
       instance_type = var.eks_node_type
     }
@@ -111,7 +117,54 @@ resource "kubernetes_namespace" "main" {
   depends_on = [
     module.eks-cluster
   ]
+}
+
+provider "helm" {
+  kubernetes {
+    host                   = data.aws_eks_cluster.cluster.endpoint
+    cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
+    token                  = data.aws_eks_cluster_auth.cluster.token
+  }
+}
+
+# Deploying Prometheus in the cluster
+resource "helm_release" "prometheus" {
+  name       = "${var.project}-prometheus"
+
+  repository = "https://prometheus-community.github.io/helm-charts"
+  chart      = "prometheus"
+  namespace  = "monitoring"
+  
+}
+
+# Deploying Grafana in the cluster
+resource "helm_release" "grafana" {
+  name       = "${var.project}-grafana"
+
+  repository = "https://grafana.github.io/helm-charts"
+  chart      = "grafana"
+  namespace  = "monitoring"
+  
+  values = [
+    file("grafana.yml")
+  ]
+
+  set {
+    name  = "persistence.storageClassName"
+    value = "gp2"
+  }
+  set {
+    name  = "persistence.enabled"
+    value = true
+  }
+  set {
+    name  = "adminPassword"
+    value = "admin" #TODO: set in a secure way
+  }
+  set {
+    name  = "service.type"
+    value = "LoadBalancer"
+  }
 
 
 }
-

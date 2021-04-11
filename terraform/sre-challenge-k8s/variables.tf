@@ -30,6 +30,12 @@ variable "eks_node_capacity" {
   description = "Number of managed nodes for the EKS cluster"
 }
 
+variable "eks_node_capacity_max" {
+  type        = number
+  default     = 2
+  description = "Number of managed nodes for the EKS cluster"
+}
+
 variable "eks_node_type" {
   type        = string
   default     = "m4.large"
@@ -46,7 +52,7 @@ variable "app_name" {
 
 variable "app_environments" {
   type = list(string)
-  default = ["develop", "stage", "production"]
+  default = ["develop", "stage", "production", "monitoring"]
   description = "List of environments to be created as namespaces in the Cluster for the application"
 }
 
