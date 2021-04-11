@@ -48,28 +48,33 @@ module "eks-cluster" {
   source          = "terraform-aws-modules/eks/aws"
   cluster_name    = var.project
   cluster_version = var.eks_cluster_version
-  subnets         = module.vpc.private_subnets
+  subnets         = module.vpc.public_subnets
   vpc_id          = module.vpc.vpc_id
 
-#   node_groups = {
-#     eks_nodes = {
-#       desired_capacity = var.eks_node_capacity
-#       max_capacity     = var.eks_node_capacity
-#       min_capaicty     = var.eks_node_capacity
-#       instance_type = var.eks_node_type
-#     }
-#   }
-
-  worker_groups = [
-    {
+  node_groups = {
+    eks_nodes = {
+      desired_capacity = var.eks_node_capacity
+      max_capacity     = var.eks_node_capacity
+      min_capaicty     = var.eks_node_capacity
       instance_type = var.eks_node_type
-      asg_max_size  = var.eks_node_capacity
     }
-  ]
+  }
+
+#   worker_groups = [
+#     {
+#       instance_type = var.eks_node_type
+#       asg_max_size  = var.eks_node_capacity
+#     }
+#   ]
 
   workers_group_defaults = {
     root_volume_type = "gp2"
   }
+
+  depends_on = [
+    module.vpc
+  ]
+
 }
 
 data "aws_eks_cluster" "cluster" {
@@ -102,5 +107,11 @@ resource "kubernetes_namespace" "main" {
 
     name = each.value
   }
+
+  depends_on = [
+    module.eks-cluster
+  ]
+
+
 }
 
