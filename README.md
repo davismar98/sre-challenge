@@ -7,11 +7,11 @@
     - [How to setup this environment](#how-to-setup-this-environment)
 - [Development Workflow](#development-workflow)
 - [The Pipeline](#the-pipeline)
-    - [Stages/Steps](#stages-steps)
+    - [Stages/Steps](#stages/steps)
 - [Observability](#observability)
     - [Monitoring the application](#monitoring-the-application)
     - [Monitoring the infrastructure](#monitoring-the-infrastructure)
-- [Trade offs, benefits and risks](#trade-offs--benefits-and-risks)
+- [Trade-offs and risks](#trade-offs-and-risks)
 - [Showcase](#showcase)
 ## Overall Environment Design
 
@@ -163,7 +163,7 @@ In the next section, I will showcase the deployed solution and how these metrics
 
 Since Prometheus and Grafana are deployed in the *monitoring* namespace of the clusters, we will be exporting metrics for all Kubernetes resources (i.e node-exporter). This will allow for a comprehensive view of the status of the application environment. Proactive monitoring and alerts will help guarantee a highly available and resilient environment with zero downtime. 
 
-## Trade offs, benefits and risks
+## Trade-offs and risks
 
 * Using EKS, most of the infrastructure and Kubernetes resources are managed by AWS (clontrol-plane, node/workers). 
 
