@@ -1,5 +1,5 @@
 ## SRE Challenge Solution
- [Challenge App Repostory](https://github.com/davismar98/apiSampleJava)
+To see the resources in the app repository, please visit [Challenge App Repostory](https://github.com/davismar98/apiSampleJava)
 ## Table of Contents
 
 - [Overall Environment Design](#overall-environment-design)
@@ -64,13 +64,15 @@ docker run -d --rm --name jenkins  \
 ```
 **NOTE**. This image can also be run in a Kubernetes cluster and use the Kubernetes Jenkins plugin to execute the jobs in pods. For the scope of the challenge, I used a local deployment of Jenkins. 
 
-To deploy the application infrastructure and environment, just set up the credentials for an AWS IAM user that has enough permissions to deploy VPC and EKS resources. Then, inside the `./terraform` directory run.
+To deploy the application infrastructure and environment, just set up the credentials for an AWS IAM user that has enough permissions to deploy VPC and EKS resources. Then, inside the `./terraform/sre-challenge-k8s` directory and run.
 
 ```
 terraform init
 terraform plan -out sre-challenge.tfplan
 terraform apply sre-challenge.tfplan 
 ```
+I am leveraging the official Terraform AWS modules to abstract VPC and EKS deployments. I also used *kubernetes* and helm *providers* to automate all the environment with namespaces and the monitoring solution. `terraform apply` will deploy around 60 total resources.
+
 
 ## Development Workflow
 
