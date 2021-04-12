@@ -93,7 +93,7 @@ For this challenge, I used Jenkins as the automation server for CI/CD.
 
 The pipeline is a Jenkins Multibranch Pipeline that will be a constraint to run on specific branch patterns, according to the defined development branching strategy. 
 
-You can find the fully functional *Jenkinsfile* in the [App Repostory](https://github.com/davismar98/apiSampleJava/blob/master/Jenkinsfile)
+You can find the fully functional *Jenkinsfile* in the [App Repository](https://github.com/davismar98/apiSampleJava/blob/master/Jenkinsfile)
 ### Stages/Steps
 
 ![Challenge design](jenkins-pipeline.png)
@@ -120,9 +120,9 @@ You can find the fully functional *Jenkinsfile* in the [App Repostory](https://g
     * *branch*:release ==> *env*:staging
     * *branch*:master/main ==> *env*:production
 
-Branches *hotfix/** or *feature** will only be built and tested, but not deployed. Other branches that don't follow the git-flow naming cconventino will not be picked up by the Jenkins pipeline. 
+Branches *hotfix/** or *feature** will only be built and tested, but not deployed. Other branches that don't follow the git-flow naming convention will not be picked up by the Jenkins pipeline. 
 
-For this step, Jenkins authenticated with AWS with an IAM user that has enough privileges to update resources within the EKS cluster (roles are mapped during the Terraform execution).
+For this step, Jenkins authenticates to AWS with an IAM user that has enough privileges to update resources within the EKS cluster (roles are mapped during the Terraform execution).
 
 10. **Slack notifications**. It will send a message with the output of the pipeline to a Slack channel. It allows continuous feedback to developers/testers.
 
