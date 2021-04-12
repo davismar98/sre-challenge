@@ -174,7 +174,7 @@ Querying all the resources created in the *production* namespace. 2 pods, 1 serv
 
 ### The deployed web app 
 ![app-running](app-running.png)
-The application was expose with a service of type *LoadBalancer*, that way we can access it using a Classic Load Balancer provided by AWS. 
+The application was exposed with a service of type *LoadBalancer*, that way we can access it using a Classic Load Balancer provided by AWS. 
 
 ### The app exposing Promethus-formatted metrics through the actuator
 ![app-actuator](app-actuator.png)
