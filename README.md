@@ -7,11 +7,11 @@
     - [How to setup this environment](#how-to-setup-this-environment)
 - [Development Workflow](#development-workflow)
 - [The Pipeline](#the-pipeline)
-    - [Stages/Steps](#stages/steps)
+    - [Stages/Steps](#stages-steps)
 - [Observability](#observability)
     - [Monitoring the application](#monitoring-the-application)
     - [Monitoring the infrastructure](#monitoring-the-infrastructure)
-- [Trade offs, benefits and risks](#trade-offs,-benefits-and-risks)
+- [Trade offs, benefits and risks](#trade-offs--benefits-and-risks)
 - [Showcase](#showcase)
 ## Overall Environment Design
 
