@@ -186,6 +186,12 @@ Here, we can start writing promQL queries to extract SLIs.
 ### Grafana visualizations
 ![grafana](grafana.png)
 With custom or imported dashboards, we can start observing what is going on in the environment and define alerts.
+
+### Container Registry
+
+![dockerhub](dockerhub.png)
+Both custom Jenkins and the application were pushed to my personal DockerHub registry.
+
 ### Multibranching pipeline in action 
 
 ![multibranching](multibranching.png)
