@@ -22,7 +22,7 @@ credentials:
       - string:
           id: "slack-token"
           scope: GLOBAL
-          secret: "{SLACK_TOKEN}"
+          secret: "${SLACK_TOKEN}"
 tool:
   git:
     installations:
@@ -44,7 +44,7 @@ unclassified:
     sendAsText: false
     teamDomain: "sre-challenge"
     tokenCredentialId: "slack-token"
-    
+
 jobs:
   - script: >
       multibranchPipelineJob('sre-challenge') {

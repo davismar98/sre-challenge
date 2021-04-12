@@ -1,4 +1,4 @@
-jenkins/env
+jenkins/env/runtime_local.env
 
 ### Terraform ###
 # Local .terraform directories
