@@ -1,5 +1,5 @@
 ## SRE Challenge Solution
-To see the resources in the app repository, please visit [Challenge App Repostory](https://github.com/davismar98/apiSampleJava)
+To check the resources in the app repository, please go [here](https://github.com/davismar98/apiSampleJava)
 ## Table of Contents
 
 - [Overall Environment Design](#overall-environment-design)
